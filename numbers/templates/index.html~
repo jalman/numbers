@@ -9,7 +9,7 @@
     }
 </script>
 
-<form action="increase">
+<form action="/" onsubmit="increase();">
     <input type="submit" value="Increase!" />
 </form>
 
