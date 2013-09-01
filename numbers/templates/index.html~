@@ -3,31 +3,44 @@
 <script src="/resource/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
     work = 3;
-	sleep = 3;
+	sleep = 100;
 	play = 3;
 	dwork = 0;
-	dsleep = 0;
+	dsleep = 2;
 	dplay = 0;
+	
+	sleeping = false;
 
     function refreshDisplays() {
-        $("#workDisp").text(work.toString());
-        $("#sleepDisp").text(sleep.toString());
-        $("#playDisp").text(play.toString());
+        $("#workDisp").text("Work: " + work.toString());
+        $("#playDisp").text("Play: " + play.toString());
+        $("#sleepDisp").text("Sleep: " + sleep.toString());
     }
     function increaseWork() {
         work++;
+        refreshDisplays();
     }
     function increaseSleep() {
         sleep++;
+        refreshDisplays();
     }
     function increasePlay() {
         play++;
+        refreshDisplays();
     }
 	function increaseWorking() {
         dwork++;
     }
-    function increaseSleeping() {
-        dsleep++;
+    function toggleSleeping() {
+		if(sleeping){
+			$("#sleepButton").val("Wake up!");
+			sleeping = false;
+		}
+		else
+		{
+			$("#sleepButton").val("Go to sleep!");
+			sleeping = true;
+		}
     }
     function increasePlaying() {
         dplay++;
@@ -37,21 +50,29 @@
 
 	function myTimer()
 	{
-		work = work + dwork;
-		sleep = sleep + dsleep;
-		play = play + dplay;
-        refreshDisplays();
+		if(sleeping)
+		{
+			sleep = sleep + dsleep;
+			if (sleep > 100) {
+				sleep = 100;
+			}
+			work = work - 0.1*dwork;
+			play = play - 0.1*dplay;
+		} else
+		{
+			sleep = sleep - dsleep;
+			work = work + dwork;
+			play = play + dplay;
+		}
+		refreshDisplays();
 	}
     refreshDisplays();	
 </script>
 <div id="workDisp"></div>
-<div id="sleepDisp"></div>
 <div id="playDisp"></div>
+<div id="sleepDisp"></div>
 <form action="javascript:void(0);" onsubmit="increaseWork();">
     <input type="submit" value="Work!" />
-</form>
-<form action="javascript:void(0);" onsubmit="increaseSleep();">
-    <input type="submit" value="Sleep!" />
 </form>
 <form action="javascript:void(0);" onsubmit="increasePlay();">
     <input type="submit" value="Play!" />
@@ -61,11 +82,11 @@
 <form action="javascript:void(0);" onsubmit="increaseWorking();">
     <input type="submit" value="Working!" />
 </form>
-<form action="javascript:void(0);" onsubmit="increaseSleeping();">
-    <input type="submit" value="Sleeping!" />
-</form>
 <form action="javascript:void(0);" onsubmit="increasePlaying();">
     <input type="submit" value="Playing!" />
+</form>
+<form action="javascript:void(0);" onsubmit="toggleSleeping();" id="sleepButton">
+    <input type="submit" value="Go to sleep!" />
 </form>
 
 {% endblock %}
