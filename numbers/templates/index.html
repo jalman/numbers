@@ -12,6 +12,7 @@
 	sleeping = false;
 
     function init() {
+		alert("hi");
         $(function() {
                 $("#progressbar").progressbar({ value: sleep });
                 });
@@ -40,12 +41,12 @@
     }
     function toggleSleeping() {
 		if(sleeping){
-			$("#sleepButton").val("Wake up!");
+			$("#sleepButton").val("Go to sleep!");
 			sleeping = false;
 		}
 		else
 		{
-			$("#sleepButton").val("Go to sleep!");
+			$("#sleepButton").val("Wake up!");
 			sleeping = true;
 		}
     }
@@ -78,6 +79,9 @@
 <div id="workDisp"></div>
 <div id="playDisp"></div>
 <div id="sleepDisp"></div>
+<div id="progressbar"></div>
+
+
 <form action="javascript:void(0);" onsubmit="increaseWork();">
     <input type="submit" value="Work!" />
 </form>
