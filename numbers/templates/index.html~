@@ -17,22 +17,18 @@
     function increaseWork() {
         work++;
     }
-
     function increaseSleep() {
         sleep++;
     }
-
     function increasePlay() {
         play++;
     }
 	function increaseWorking() {
         dwork++;
     }
-
     function increaseSleeping() {
         dsleep++;
     }
-
     function increasePlaying() {
         dplay++;
     }
