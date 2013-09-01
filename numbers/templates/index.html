@@ -1,16 +1,34 @@
 {% block title %} Create a Hunt {% endblock %}
 {% block content %} 
 <script type="text/javascript">
-    a = 3;
+    work = 3;
+	sleep = 3;
+	play = 3;
 
-    function increase() {
-        a++;
-        alert(a);
+    function increaseWork() {
+        work++;
+        alert(work);
+    }
+
+    function increaseSleep() {
+        sleep++;
+        alert(sleep);
+    }
+
+    function increasePlay() {
+        play++;
+        alert(play);
     }
 </script>
 
-<form action="javascript:void(0);" onsubmit="increase();">
-    <input type="submit" value="Increase!" />
+<form action="javascript:void(0);" onsubmit="increaseWork();">
+    <input type="submit" value="Work!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increaseSleep();">
+    <input type="submit" value="Sleep!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increasePlay();">
+    <input type="submit" value="Play!" />
 </form>
 
 {% endblock %}
