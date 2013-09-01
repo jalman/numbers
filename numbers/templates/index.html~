@@ -1,16 +1,75 @@
 {% block title %} Create a Hunt {% endblock %}
 {% block content %} 
+<script src="/resource/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-    a = 3;
+    work = 3;
+	sleep = 3;
+	play = 3;
+	dwork = 0;
+	dsleep = 0;
+	dplay = 0;
 
-    function increase() {
-        a++;
-        alert(a);
+    function refreshDisplays() {
+        $("#workDisp").text(work.toString());
+        $("#sleepDisp").text(sleep.toString());
+        $("#playDisp").text(play.toString());
     }
-</script>
+    function increaseWork() {
+        work++;
+    }
 
-<form action="/" onsubmit="increase();">
-    <input type="submit" value="Increase!" />
+    function increaseSleep() {
+        sleep++;
+    }
+
+    function increasePlay() {
+        play++;
+    }
+	function increaseWorking() {
+        dwork++;
+    }
+
+    function increaseSleeping() {
+        dsleep++;
+    }
+
+    function increasePlaying() {
+        dplay++;
+    }
+	
+	var myVar=setInterval(function(){myTimer()},1000);
+
+	function myTimer()
+	{
+		work = work + dwork;
+		sleep = sleep + dsleep;
+		play = play + dplay;
+        refreshDisplays();
+	}
+    refreshDisplays();	
+</script>
+<div id="workDisp"></div>
+<div id="sleepDisp"></div>
+<div id="playDisp"></div>
+<form action="javascript:void(0);" onsubmit="increaseWork();">
+    <input type="submit" value="Work!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increaseSleep();">
+    <input type="submit" value="Sleep!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increasePlay();">
+    <input type="submit" value="Play!" />
+</form>
+
+
+<form action="javascript:void(0);" onsubmit="increaseWorking();">
+    <input type="submit" value="Working!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increaseSleeping();">
+    <input type="submit" value="Sleeping!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increasePlaying();">
+    <input type="submit" value="Playing!" />
 </form>
 
 {% endblock %}

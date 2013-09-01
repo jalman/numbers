@@ -1,5 +1,6 @@
 {% block title %} Create a Hunt {% endblock %}
 {% block content %} 
+<script src="/resource/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
     work = 3;
 	sleep = 3;
@@ -8,33 +9,28 @@
 	dsleep = 0;
 	dplay = 0;
 
+    function refreshDisplays() {
+        $("#workDisp").text(work.toString());
+        $("#sleepDisp").text(sleep.toString());
+        $("#playDisp").text(play.toString());
+    }
     function increaseWork() {
         work++;
-        alert(work);
     }
-
     function increaseSleep() {
         sleep++;
-        alert(sleep);
     }
-
     function increasePlay() {
         play++;
-        alert(play);
     }
 	function increaseWorking() {
         dwork++;
-        alert(dwork);
     }
-
     function increaseSleeping() {
         dsleep++;
-        alert(dsleep);
     }
-
     function increasePlaying() {
         dplay++;
-        alert(dplay);
     }
 	
 	var myVar=setInterval(function(){myTimer()},1000);
@@ -44,10 +40,13 @@
 		work = work + dwork;
 		sleep = sleep + dsleep;
 		play = play + dplay;
+        refreshDisplays();
 	}
-	
+    refreshDisplays();	
 </script>
-
+<div id="workDisp"></div>
+<div id="sleepDisp"></div>
+<div id="playDisp"></div>
 <form action="javascript:void(0);" onsubmit="increaseWork();">
     <input type="submit" value="Work!" />
 </form>
