@@ -1,0 +1,16 @@
+{% block title %} Create a Hunt {% endblock %}
+{% block content %} 
+<script type="text/javascript">
+    a = 3;
+
+    function increase() {
+        a++;
+        alert(a);
+    }
+</script>
+
+<form action="increase">
+    <input type="submit" value="Increase!" />
+</form>
+
+{% endblock %}
