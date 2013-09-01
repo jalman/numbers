@@ -11,6 +11,10 @@
 	
 	sleeping = false;
 
+    function init() {
+
+        refreshDisplays();
+    }
     function refreshDisplays() {
         $("#workDisp").text("Work: " + work.toString());
         $("#playDisp").text("Play: " + play.toString());
@@ -66,7 +70,7 @@
 		}
 		refreshDisplays();
 	}
-    refreshDisplays();	
+    window.onload = init;
 </script>
 <div id="workDisp"></div>
 <div id="playDisp"></div>
@@ -85,8 +89,8 @@
 <form action="javascript:void(0);" onsubmit="increasePlaying();">
     <input type="submit" value="Playing!" />
 </form>
-<form action="javascript:void(0);" onsubmit="toggleSleeping();" id="sleepButton">
-    <input type="submit" value="Go to sleep!" />
+<form action="javascript:void(0);" onsubmit="toggleSleeping();">
+    <input type="submit" value="Go to sleep!" id="sleepButton" />
 </form>
 
 {% endblock %}

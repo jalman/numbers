@@ -11,6 +11,13 @@
 	
 	sleeping = false;
 
+    function init() {
+        $(function() {
+                $("#progressbar").progressbar({ value: sleep });
+                });
+
+        refreshDisplays();
+    }
     function refreshDisplays() {
         $("#workDisp").text("Work: " + work.toString());
         $("#playDisp").text("Play: " + play.toString());
@@ -66,7 +73,7 @@
 		}
 		refreshDisplays();
 	}
-    refreshDisplays();	
+    window.onload = init;
 </script>
 <div id="workDisp"></div>
 <div id="playDisp"></div>
