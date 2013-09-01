@@ -4,6 +4,9 @@
     work = 3;
 	sleep = 3;
 	play = 3;
+	dwork = 0;
+	dsleep = 0;
+	dplay = 0;
 
     function increaseWork() {
         work++;
@@ -19,6 +22,30 @@
         play++;
         alert(play);
     }
+	function increaseWorking() {
+        dwork++;
+        alert(dwork);
+    }
+
+    function increaseSleeping() {
+        dsleep++;
+        alert(dsleep);
+    }
+
+    function increasePlaying() {
+        dplay++;
+        alert(dplay);
+    }
+	
+	var myVar=setInterval(function(){myTimer()},1000);
+
+	function myTimer()
+	{
+		work = work + dwork;
+		sleep = sleep + dsleep;
+		play = play + dplay;
+	}
+	
 </script>
 
 <form action="javascript:void(0);" onsubmit="increaseWork();">
@@ -29,6 +56,17 @@
 </form>
 <form action="javascript:void(0);" onsubmit="increasePlay();">
     <input type="submit" value="Play!" />
+</form>
+
+
+<form action="javascript:void(0);" onsubmit="increaseWorking();">
+    <input type="submit" value="Working!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increaseSleeping();">
+    <input type="submit" value="Sleeping!" />
+</form>
+<form action="javascript:void(0);" onsubmit="increasePlaying();">
+    <input type="submit" value="Playing!" />
 </form>
 
 {% endblock %}
