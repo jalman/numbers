@@ -10,35 +10,53 @@
 	sleep = 100;
 	play = 3;
 	dwork = 0;
-	dsleep = 2;
+	dsleep = 0.2;
 	dplay = 0;
 	
 	sleeping = false;
-
+	
     function init() {
         refreshDisplays();
     }
+	
+	function cost(n) {
+		return Math.floor(Math.exp(n+2) + n*n + n + 10);
+	}
+	
     function refreshDisplays() {
-        $("#workDisp").text("Work: " + work.toString());
-        $("#playDisp").text("Play: " + play.toString());
-        $("#sleepDisp").text("Sleep: " + sleep.toString());
+        $("#workDisp").text("Work: " + Math.floor(work).toString());
+        $("#playDisp").text("Play: " + Math.floor(play).toString());
+        $("#sleepDisp").text("Sleep: " + Math.floor(sleep).toString());
 
+		$("#workUpgDisp").text("Cost: " + (cost(dwork)).toString());
+        $("#playUpgDisp").text("Cost: " + (cost(dplay)).toString());
+		
         $("#progressbar").progressbar({ value: sleep });
+		$('#progressbar').width(200);
     }
     function increaseWork() {
         work++;
-        refreshDisplays();
-    }
-    function increaseSleep() {
-        sleep++;
         refreshDisplays();
     }
     function increasePlay() {
         play++;
         refreshDisplays();
     }
+    function increasePlaying() {
+		if(play >= cost(dplay))
+		{
+			play = play - cost(dplay);
+			dplay++;
+		}
+		refreshDisplays();
+    }
 	function increaseWorking() {
-        dwork++;
+		if(work >= cost(dwork))
+		{
+			work = work - cost(dwork);
+			dwork++;
+		}
+		refreshDisplays();
     }
     function toggleSleeping() {
 		if(sleeping){
@@ -51,9 +69,6 @@
 			sleeping = true;
 		}
     }
-    function increasePlaying() {
-        dplay++;
-    }
 	
 	var myVar=setInterval(function(){myTimer()},1000);
 
@@ -61,17 +76,20 @@
 	{
 		if(sleeping)
 		{
-			sleep = sleep + dsleep;
+			sleep = sleep + 2*dsleep;
 			if (sleep > 100) {
 				sleep = 100;
 			}
 			work = work - 0.1*dwork;
 			play = play - 0.1*dplay;
-		} else
+		} else if(sleep > 0)
 		{
 			sleep = sleep - dsleep;
 			work = work + dwork;
 			play = play + dplay;
+		} else {
+			sleep = sleep - 5*dsleep - 5;
+			work = work - 5*dwork - 5;
 		}
 		refreshDisplays();
 	}
@@ -94,9 +112,13 @@
 <form action="javascript:void(0);" onsubmit="increaseWorking();">
     <input type="submit" value="Working!" />
 </form>
+<div id="workUpgDisp"></div>
+
 <form action="javascript:void(0);" onsubmit="increasePlaying();">
     <input type="submit" value="Playing!" />
 </form>
+<div id="playUpgDisp"></div>
+
 <form action="javascript:void(0);" onsubmit="toggleSleeping();">
     <input type="submit" value="Go to sleep!" id="sleepButton" />
 </form>
